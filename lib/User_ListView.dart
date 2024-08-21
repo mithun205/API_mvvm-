@@ -9,7 +9,8 @@ class UserListView extends StatelessWidget {
     return Scaffold(
       //appbar
       appBar: AppBar(
-      title: const Center(child: Text('Users')),
+      title: const Center(child: Text('Users',
+          style: TextStyle(fontWeight: FontWeight.w700),)),
       backgroundColor: Color.fromARGB(115, 75, 75, 75),),
 
       body: Consumer<UserViewModel>(
@@ -24,8 +25,11 @@ class UserListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final user = viewModel.users[index];
                 return ListTile(
-                  title: Text(user.name),
-                  subtitle: Text(user.email),
+                  title: Text(user.name,
+                  style: TextStyle(fontWeight: FontWeight.w600),),
+                  subtitle: Text(user.email,
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
                 );
               },
             );
