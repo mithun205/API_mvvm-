@@ -27,6 +27,7 @@ class MvvM_asses extends StatelessWidget {
 
 
 
+
 import 'package:flutter/material.dart';
 
 class Home_scrn extends StatefulWidget {
@@ -83,27 +84,28 @@ class _Home_scrnState extends State<Home_scrn> {
   final relievingFactorsController = TextEditingController(); // Dropdown
 
   // Treatment controllers
-  final reason1_Controller = TextEditingController();
-  final reason2_Controller = TextEditingController();
-  final reason3_Controller = TextEditingController();
+  // final reason1_Controller = TextEditingController();
+  // final reason2_Controller = TextEditingController();
+  // final reason3_Controller = TextEditingController();
 
   // Past Medical History controllers
   final chronicIllnessController = TextEditingController();
   final specifyChronicIllnessController = TextEditingController();
-  final reason4_Controller = TextEditingController();
-  final reason5_Controller = TextEditingController();
-  final reason6_Controller = TextEditingController();
-  final reason7_Controller = TextEditingController();
-  final reason8_Controller = TextEditingController();
-  final reason9_Controller = TextEditingController();
-  final reason10_Controller = TextEditingController();
-  final reason11_Controller = TextEditingController();
+  // final reason4_Controller = TextEditingController();
+  // final reason5_Controller = TextEditingController();
+  // final reason6_Controller = TextEditingController();
+  final alleviateSymptomsController = TextEditingController();
+  final relieveSymptomsController = TextEditingController();
+  final soughtTreatmentController = TextEditingController();
+  final pastSurgeryController = TextEditingController();
+  final medictationContoller = TextEditingController();
 
   // Family Medical History controllers
+
   final historyOfIllnessController = TextEditingController();
   final specifyHistoryOfIllnessController = TextEditingController();
-  final reason12_Controller = TextEditingController();
-  final reason13_Controller = TextEditingController();
+  final foodsController = TextEditingController();
+  final infectiousDieseasesController = TextEditingController();
 
   // Social History controllers
   final livingSituationController = TextEditingController();
@@ -111,26 +113,25 @@ class _Home_scrnState extends State<Home_scrn> {
 
   // Lifestyle Factors controllers
   final exerciseController = TextEditingController();
-  final reason14_Controller = TextEditingController();
-  final reason15_Controller = TextEditingController();
-  final reason16_Controller = TextEditingController();
+  final mentalDisorderController = TextEditingController();
+  final immunizationHistoryController = TextEditingController();
+  final currentMedicineController = TextEditingController();
   final dietaryHabitsController = TextEditingController();
 
   // Environmental Factors controllers
-  final reason17_Controller = TextEditingController();
-  final reason18_Controller = TextEditingController();
+  final pastMedicineController = TextEditingController();
+  final heridatoryController = TextEditingController();
 
-  final reason19_Controller = TextEditingController();
-  final reason20_Controller = TextEditingController();
-  final reason21_Controller = TextEditingController();
-  final reason22_Controller = TextEditingController();
-  final reason23_Controller = TextEditingController();
-  final reason24_Controller = TextEditingController();
-  final reason25_Controller = TextEditingController();
-  final reason26_Controller = TextEditingController();
-  final reason27_Controller = TextEditingController();
+  final mentalHealthController = TextEditingController();
+  final tobacoController = TextEditingController();
+  final alcoholController = TextEditingController();
+  final drugController = TextEditingController();
+  final pollutantsController = TextEditingController();
+  final toxinsController = TextEditingController();
 
-
+  // final reason25_Controller = TextEditingController();
+  // final reason26_Controller = TextEditingController();
+  // final reason27_Controller = TextEditingController();
 
   // Radio Buttons
   String _alleviateSymptoms = 'No';
@@ -157,192 +158,460 @@ class _Home_scrnState extends State<Home_scrn> {
   String _selectedIllness = 'Hypertension';
   bool _showOtherField = false;
   String _historyIllness = 'Diabetes';
-  String _livingSituation = "With Family"; // Ensure this matches one of the items
-  String? _exerciseFrequency;
+  String _livingSituation =
+      "With Family"; // Ensure this matches one of the items
 
   // Stepper Variables
   int _currentStep = 0;
-  bool _isLastStep = false;
 
-
-
-void validate() {
-  List<Map<String, dynamic>> fields = [
-    {'controller': nameController, 'error': "Please fill in the Name"},
-    {'controller': ageController, 'error': "Please fill in the Age"},
-    {'controller': genderController, 'error': "Please select the Gender"},
-    {'controller': dateOfBirthController, 'error': "Please enter the Date of Birth"},
-    {'controller': emailController, 'error': "Please enter the Email"},
-    {'controller': mobileController, 'error': "Please enter the Mobile number"},
-    {'controller': emergencyContactController, 'error': "Please enter the Emergency Contact"},
-    {'controller': dateOfExaminationController, 'error': "Please enter the Date of Examination"},
-    {'controller': referingPhysicianController, 'error': "Please enter the Referring Physician"},
-    {'controller': medicalRecordNumberController, 'error': "Please enter the Medical Record Number"},
-    {'controller': systolicController, 'error': "Please enter Systolic Pressure"},
-    {'controller': diastolicController, 'error': "Please enter Diastolic Pressure"},
-    {'controller': heartRateController, 'error': "Please enter Heart Rate"},
-    {'controller': respiratoryRateController, 'error': "Please enter Respiratory Rate"},
-    {'controller': temperatureController, 'error': "Please enter Temperature"},
-    {'controller': spo2Controller, 'error': "Please enter SPO2"},
-    {'controller': heightController, 'error': "Please enter Height"},
-    {'controller': weightController, 'error': "Please enter Weight"},
-    {'controller': symptomsController, 'error': "Please enter Symptoms"},
-    {'controller': prevTreatmentController, 'error': "Please enter Previous Treatment"},
-    {'controller': suddenOnsetController, 'error': "Please enter Sudden Onset"},
-    {'controller': gradualOnsetController, 'error': "Please enter Gradual Onset"},
-    {'controller': acuteSymptomsController, 'error': "Please enter Acute Symptoms"},
-    {'controller': chronicSymptomsController, 'error': "Please enter Chronic Symptoms"},
-    {'controller': intermittentController, 'error': "Please enter Intermittent Symptoms"},
-    {'controller': gradualProgressionController, 'error': "Please enter Gradual Progression"},
-    {'controller': remittingController, 'error': "Please enter Remitting"},
-    {'controller': frequencyOfSymptomsController, 'error': "Please enter Frequency of Symptoms"},
-    {'controller': timingOfSymptomsController, 'error': "Please enter Timing of Symptoms"},
-    {'controller': onsetController, 'error': "Please enter Onset"},
-    {'controller': locationController, 'error': "Please enter Location"},
-    {'controller': characteristicsController, 'error': "Please enter Characteristics"},
-    {'controller': durationController, 'error': "Please enter Duration"},
-    {'controller': aggravatingFactorsController, 'error': "Please enter Aggravating Factors"},
-    {'controller': relievingFactorsController, 'error': "Please enter Relieving Factors"},
-    {'controller': reason1_Controller, 'error': "Please fill in Reason 1"},
-    {'controller': reason2_Controller, 'error': "Please fill in Reason 2"},
-    {'controller': reason3_Controller, 'error': "Please fill in Reason 3"},
-    {'controller': chronicIllnessController, 'error': "Please enter Chronic Illness"},
-    {'controller': specifyChronicIllnessController, 'error': "Please specify Chronic Illness"},
-    {'controller': historyOfIllnessController, 'error': "Please enter History of Illness"},
-    {'controller': specifyHistoryOfIllnessController, 'error': "Please specify History of Illness"},
-    {'controller': livingSituationController, 'error': "Please enter Living Situation"},
-    {'controller': occupationController, 'error': "Please enter Occupation"},
-    {'controller': exerciseController, 'error': "Please enter Exercise details"},
-    {'controller': dietaryHabitsController, 'error': "Please enter Dietary Habits"},
-    {'controller': reason4_Controller, 'error': "Please fill in Reason 4"},
-    {'controller': reason5_Controller, 'error': "Please fill in Reason 5"},
-    {'controller': reason6_Controller, 'error': "Please fill in Reason 6"},
-    {'controller': reason7_Controller, 'error': "Please fill in Reason 7"},
-    {'controller': reason8_Controller, 'error': "Please fill in Reason 8"},
-    {'controller': reason9_Controller, 'error': "Please fill in Reason 9"},
-    {'controller': reason10_Controller, 'error': "Please fill in Reason 10"},
-    {'controller': reason11_Controller, 'error': "Please fill in Reason 11"},
-    {'controller': reason12_Controller, 'error': "Please fill in Reason 12"},
-    {'controller': reason13_Controller, 'error': "Please fill in Reason 13"},
-    {'controller': reason14_Controller, 'error': "Please fill in Reason 14"},
-    {'controller': reason15_Controller, 'error': "Please fill in Reason 15"},
-    {'controller': reason16_Controller, 'error': "Please fill in Reason 16"},
-    {'controller': reason17_Controller, 'error': "Please fill in Reason 17"},
-    {'controller': reason18_Controller, 'error': "Please fill in Reason 18"},
-    {'controller': reason19_Controller, 'error': "Please fill in Reason 19"},
-    {'controller': reason20_Controller, 'error': "Please fill in Reason 20"},
-    {'controller': reason21_Controller, 'error': "Please fill in Reason 21"},
-    {'controller': reason22_Controller, 'error': "Please fill in Reason 22"},
-    {'controller': reason23_Controller, 'error': "Please fill in Reason 23"},
-    {'controller': reason24_Controller, 'error': "Please fill in Reason 24"},
-    {'controller': reason25_Controller, 'error': "Please fill in Reason 25"},
-    {'controller': reason26_Controller, 'error': "Please fill in Reason 26"},
-    {'controller': reason27_Controller, 'error': "Please fill in Reason 27"}
-  ];
+  bool validate() {
+    List<Map<String, dynamic>> fields = getFieldsForCurrentStep(_currentStep);
 
     bool allFilled = true;
-  String firstError = "";
+    String firstError = "";
 
-  for (var field in fields) {
-    if (field['controller'].text.trim().isEmpty) {
-      allFilled = false;
-      firstError = field['error'];
-      break; // Show only the first error
+    for (var field in fields) {
+      if (field['controller'].text.trim().isEmpty) {
+        allFilled = false;
+        firstError = field['error'];
+        break; // Show only the first error
+      }
+    }
+
+    if (!allFilled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(firstError),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } else {
+      print("All required fields for this step are filled");
+      // Proceed with the next step
+    }
+    return allFilled;
+  }
+
+  List<Map<String, dynamic>> getFieldsForCurrentStep(int currentStep) {
+    switch (currentStep) {
+      case 0:
+        return [
+          //step-1
+          {'controller': nameController, 'error': "Please fill in the Name"},
+          {'controller': ageController, 'error': "Please fill in the Age"},
+          {'controller': genderController, 'error': "Please select the Gender"},
+          {'controller': dateOfBirthController,'error': "Please enter the Date of Birth"},
+          {'controller': emailController, 'error': "Please enter the Email"},
+          {'controller': mobileController,'error': "Please enter the Mobile number"},
+          {'controller': emergencyContactController,'error': "Please enter the Emergency Contact"},
+          {'controller': dateOfExaminationController,'error': "Please enter the Date of Examination"},
+          {'controller': referingPhysicianController,'error': "Please enter the Referring Physician"},
+          {'controller': medicalRecordNumberController,'error': "Please enter the Medical Record Number"},
+        ];
+
+      case 1:
+        return [
+          //step-2
+          {'controller': systolicController,'error': "Please enter Systolic Pressure"},
+          {'controller': diastolicController,'error': "Please enter Diastolic Pressure"},
+          {'controller': heartRateController,'error': "Please enter Heart Rate"},
+          {'controller': respiratoryRateController,'error': "Please enter Respiratory Rate"},
+          {'controller': temperatureController,'error': "Please enter Temperature"},
+          {'controller': spo2Controller, 'error': "Please enter SPO2"},
+          {'controller': heightController, 'error': "Please enter Height"},
+          {'controller': weightController, 'error': "Please enter Weight"},
+          {'controller': symptomsController, 'error': "Please enter Symptoms"},
+          {'controller': prevTreatmentController,'error': "Please enter Previous Treatment"},
+        ];
+
+      case 2:
+        return [
+          //step-3
+          {'controller': suddenOnsetController,'error': "Please enter Sudden Onset"},
+          {'controller': gradualOnsetController,'error': "Please enter Gradual Onset"},
+          {'controller': acuteSymptomsController,'error': "Please enter Acute Symptoms"},
+          {'controller': chronicSymptomsController,'error': "Please enter Chronic Symptoms"},
+          {'controller': intermittentController,'error': "Please enter Intermittent Symptoms"},
+          {'controller': gradualProgressionController,'error': "Please enter Gradual Progression"},
+          {'controller': remittingController,'error': "Please enter Remitting"},
+          {'controller': frequencyOfSymptomsController,'error': "Please enter Frequency of Symptoms"},
+          {'controller': timingOfSymptomsController,'error': "Please enter Timing of Symptoms"},
+        ];
+
+      case 3:
+        return [
+          //step-4
+          {'controller': onsetController, 'error': "Please enter Onset"},
+          {'controller': locationController, 'error': "Please enter Location"},
+          {'controller': characteristicsController,'error': "Please enter Characteristics"},
+          {'controller': durationController, 'error': "Please enter Duration"},
+          {'controller': aggravatingFactorsController,'error': "Please enter Aggravating Factors"},
+          {'controller': relievingFactorsController,'error': "Please enter Relieving Factors"},
+          // alleviateSymptomsController
+          ///{'controller': alleviateSymptomsController,'error': "Please fill in Reason 1"},
+          //relieveSymptomsController
+          ///{'controller': relieveSymptomsController,'error': "Please fill in Reason 2"},
+          //soughtTreatmentController
+          ///{'controller': soughtTreatmentController,'error': "Please fill in Reason 3"},
+        ];
+
+      case 4:
+        return [
+          //step-5
+          {'controller': chronicIllnessController,'error': "Please enter Chronic Illness"},
+          //{'controller': specifyChronicIllnessController,'error': "Please specify Chronic Illness"},
+          //pastSurgeryController         
+          ///{'controller': pastSurgeryController,'error': "Please fill in Reason 10"},
+          //medictationContoller
+          ///{'controller': medictationContoller,'error': "Please fill in Reason 11"},
+          //foodsController
+          ///{'controller': foodsController,'error': "Please fill in Reason 12"},
+          //infectiousDieseasesController
+          ///{'controller': infectiousDieseasesController,'error': "Please fill in Reason 13"},
+          //mentalDisorderController
+          ///{'controller': mentalDisorderController,'error': "Please fill in Reason 14"},
+          //immunizationHistoryController
+          ///{'controller': immunizationHistoryController,'error': "Please fill in Reason 15"},
+          //currentMedicineController
+          ///{'controller': currentMedicineController,'error': "Please fill in Reason 16"},
+          //pastMedicineController
+          ///{'controller': pastMedicineController,'error': "Please fill in Reason 17"},
+        ];
+
+      case 5:
+        return [
+          //step-6
+          {'controller': historyOfIllnessController,'error': "Please enter History of Illness"},
+          //{'controller': specifyHistoryOfIllnessController,'error': "Please specify History of Illness"},
+          //heridatoryController
+          ///{'controller': heridatoryController,'error': "Please fill in Reason 18"},
+          //mentalHealthController
+          ///{'controller': mentalHealthController,'error': "Please fill in Reason 19"},
+          {'controller': livingSituationController,'error': "Please enter Living Situation"},
+          {'controller': occupationController,'error': "Please enter Occupation"},
+        ];
+
+      case 6:
+        return [
+          //step-7
+          //tobacoController
+          ///{'controller': tobacoController,'error': "Please fill in Reason 20"},
+          //alcoholController
+          ///{'controller': alcoholController,'error': "Please fill in Reason 21"},
+          //drugController
+          ///{'controller': drugController,'error': "Please fill in Reason 22"},
+          {'controller': exerciseController,'error': "Please enter Exercise details"},
+          //pollutantsController
+          ///{'controller': pollutantsController,'error': "Please fill in Reason 23"},
+          //toxinsController
+         ///{'controller': toxinsController,'error': "Please fill in Reason 24"},
+        ];
+
+      // Add similar cases for other steps
+      default:
+        return [];
     }
   }
 
-  if (!allFilled) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(firstError),
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 2),
-      ),
+  void saveDataAndShowDialog() {
+    // Collect all data into a map
+    Map<String, String> formData = {
+      //1
+      "Name": nameController.text,
+      "Age": ageController.text,
+      "Gender": genderController.text,
+      "Date of Birth": dateOfBirthController.text,
+      "Email": emailController.text,
+      "Mobile": mobileController.text,
+      "Emergency Contact": emergencyContactController.text,
+      "Date of Examination": dateOfExaminationController.text,
+      "Referring Physician": referingPhysicianController.text,
+      "Medical Record Number": medicalRecordNumberController.text,
+      //2
+      "Systolic Pressure": systolicController.text,
+      "Diastolic Pressure": diastolicController.text,
+      "Heart Rate": heartRateController.text,
+      "Respiratory Rate": respiratoryRateController.text,
+      "Temperature": temperatureController.text,
+      "SpO2": spo2Controller.text,
+      "Height": heightController.text,
+      "Weight": weightController.text,
+      "Symptoms": symptomsController.text,
+      "Previous Treatment": prevTreatmentController.text,
+      //3
+      "Sudden Onset": suddenOnsetController.text,
+      "Gradual Onset": gradualOnsetController.text,
+      "Acute Symptoms": acuteSymptomsController.text,
+      "Chronic Symptoms": chronicSymptomsController.text,
+      "Intermittent Symptoms": intermittentController.text,
+      "Gradual Progression": gradualProgressionController.text,
+      "Remitting": remittingController.text,
+      "Frequency of Symptoms": frequencyOfSymptomsController.text,
+      "Timing of Symptoms": timingOfSymptomsController.text,
+      //4
+      "Onset": onsetController.text,
+      "Location": locationController.text,
+      "Characteristics": characteristicsController.text,
+      "Duration": durationController.text,
+      "Aggravating Factors": aggravatingFactorsController.text,
+      "Relieving Factors": relievingFactorsController.text,
+      "AlleviateSymptoms": alleviateSymptomsController.text,
+      "RelieveSymptoms": relieveSymptomsController.text,
+      "SoughtTreatment": soughtTreatmentController.text,
+      //5
+      "Chronic Illness": chronicIllnessController.text,
+      //"Specify Chronic Illness": specifyChronicIllnessController.text,
+      "Past Surgery": pastSurgeryController.text,
+      "Medictation allergy": medictationContoller.text,
+      "Food allergy": foodsController.text,
+      "Infectius Diseaes allergy": infectiousDieseasesController.text,
+      "Mental Disorder": mentalDisorderController.text,
+      "Immunization History": immunizationHistoryController.text,
+      "Current Medicine": currentMedicineController.text,
+      "Past Medicine": pastMedicineController.text,
+      //6
+      "History of Illness": historyOfIllnessController.text,
+      //"Specify History of Illness": specifyHistoryOfIllnessController.text,
+      "Heridatory": heridatoryController.text,
+      "Mental Health": mentalHealthController.text,
+      "Living Situation": livingSituationController.text,
+      "Occupation": occupationController.text,
+      //7
+      "Tobacco": tobacoController.text,
+      "Alcohol": alcoholController.text,
+      "Drug": drugController.text,
+      "Exercise Details": exerciseController.text,
+      "Dietary Habits": dietaryHabitsController.text,
+      "Pollutant": pollutantsController.text,
+      "Toxins": toxinsController.text,
+      // "Reason 1": reason1_Controller.text,
+      // "Reason 2": reason2_Controller.text,
+      // "Reason 3": reason3_Controller.text,
+      // "Reason 4": reason4_Controller.text,
+      // "Reason 5": reason5_Controller.text,
+      // "Reason 6": reason6_Controller.text,
+      // "Reason 25": reason25_Controller.text,
+      // "Reason 26": reason26_Controller.text,
+      // "Reason 27": reason27_Controller.text,
+    };
+
+    // Show dialog with collected data
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Saved Data"),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: formData.entries.map((entry) {
+                return Text("${entry.key}: ${entry.value}");
+              }).toList(),
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green, foregroundColor: Colors.white),
+              onPressed: () {
+                Navigator.of(context).pop();
+                resetForm();
+              },
+              child: Text("Close"),
+            ),
+          ],
+        );
+      },
     );
-  } else {
-    print("All required fields are filled");
-    // Proceed with the next step
   }
-}
 
+  void resetForm() {
+    setState(() {
+      // Reset all controllers
+      nameController.clear();
+      ageController.clear();
+      genderController.clear();
+      dateOfBirthController.clear();
+      emailController.clear();
+      mobileController.clear();
+      emergencyContactController.clear();
+      dateOfExaminationController.clear();
+      referingPhysicianController.clear();
+      medicalRecordNumberController.clear();
+      systolicController.clear();
+      diastolicController.clear();
+      heartRateController.clear();
+      respiratoryRateController.clear();
+      temperatureController.clear();
+      spo2Controller.clear();
+      heightController.clear();
+      weightController.clear();
+      symptomsController.clear();
+      prevTreatmentController.clear();
+      suddenOnsetController.clear();
+      gradualOnsetController.clear();
+      acuteSymptomsController.clear();
+      chronicSymptomsController.clear();
+      intermittentController.clear();
+      gradualProgressionController.clear();
+      remittingController.clear();
+      frequencyOfSymptomsController.clear();
+      timingOfSymptomsController.clear();
+      onsetController.clear();
+      locationController.clear();
+      characteristicsController.clear();
+      durationController.clear();
+      aggravatingFactorsController.clear();
+      relievingFactorsController.clear();
+      // reason1_Controller.clear();
+      // reason2_Controller.clear();
+      // reason3_Controller.clear();
+      chronicIllnessController.clear();
+      specifyChronicIllnessController.clear();
+      historyOfIllnessController.clear();
+      specifyHistoryOfIllnessController.clear();
+      livingSituationController.clear();
+      occupationController.clear();
+      exerciseController.clear();
+      //  reason4_Controller.clear();
+      //   reason5_Controller.clear();
+      //    reason6_Controller.clear();
+          alleviateSymptomsController.clear();
+           relieveSymptomsController.clear();
+            soughtTreatmentController.clear();
+             pastSurgeryController.clear();
+              medictationContoller.clear();
+               foodsController.clear();
+                infectiousDieseasesController.clear();
+      mentalDisorderController.clear();
+      immunizationHistoryController.clear();
+      currentMedicineController.clear();
+      dietaryHabitsController.clear();
+      pastMedicineController.clear();
+      heridatoryController.clear();
+      mentalHealthController.clear();
+      tobacoController.clear();
+      alcoholController.clear();
+      drugController.clear();
+      pollutantsController.clear();
+      toxinsController.clear();
+      // reason25_Controller.clear();
+      // reason26_Controller.clear();
+      // reason27_Controller.clear();
 
+      // Reset radio buttons
+      _alleviateSymptoms = 'No';
+      _relieveSymptoms = 'No';
+      _soughtTreatment = 'No';
+      _pastSurgery = "No";
+      _medication = 'No';
+      _foods = 'No';
+      _infectiousDiseases = 'No';
+      _mentalDisorder = "No";
+      _immunizationHistory = 'Not up to date';
+      _currentMedicines = 'No';
+      _pastMedicines = 'No';
+      _hereditary = "No";
+      _mentalHealth = 'No';
+      _tobacco = 'No';
+      _alcohol = 'No';
+      _drug = "No";
+      _dietary = 'Unbalanced';
+      _pollutants = 'No';
+      _toxins = 'No';
 
+      // Reset dropdown fields
+      _selectedIllness = 'Hypertension';
+      _showOtherField = false;
+      _historyIllness = 'Diabetes';
+      _livingSituation = "With Family";
+      // _exerciseFrequency = null;
+
+      // Reset stepper
+      _currentStep = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Health Assessment",style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          "Health Assessment",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
-
       body: Column(
         children: [
           Expanded(
             child: Stepper(
-              
-              // margin: EdgeInsets.all(20),
-              
+              connectorThickness: 5,
               currentStep: _currentStep,
               type: StepperType.horizontal, // Horizontal stepper
               onStepTapped: (step) {
-                setState(() {
-                  _currentStep = step; // Allow tapping on steps
-                });
+                bool isValid = validate();
+                if (isValid) {
+                  setState(() {
+                    _currentStep =
+                        step; // Move to the next step only if validation passes
+                  });
+                }
+                // setState(() {
+                //   _currentStep = step; // Allow tapping on steps
+                // });
               },
-              // onStepContinue: () {
-              //   setState(() {
-              //     if (_currentStep < getSteps(context).length - 1) {
-              //       _currentStep++;
-              //     } else {
-              //       _isLastStep = true;
-              //     }
-              //   });
-              // },
-              // onStepCancel: () {
-              //   setState(() {
-              //     if (_currentStep > 0) {
-              //       _currentStep--;
-              //     }
-              //   });
-              // },
+              //connectorColor: WidgetStateColor<Color>.balck,
+              controlsBuilder: (context, details) {
+                return SizedBox.shrink();
+              },
               steps: getSteps(context),
             ),
           ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                  if (_currentStep > 0) {
-                    _currentStep--;
-                  }
-                });
-                },
-                child: Text('Previous'),
-              ),
-              
-              ElevatedButton(
-                onPressed: () {
-                  if (_isLastStep) {
-                    // Save the form data here
-                    print('Form Saved');
-                  } else {
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white),
+                  onPressed: () {
                     setState(() {
-                      if (_currentStep < getSteps(context).length - 1) {
-                        _currentStep++;
-                        validate();
+                      if (_currentStep > 0) {
+                        _currentStep--;
                       }
                     });
-                  }
-                },
-                child: Text(_isLastStep ? 'Save' : 'Continue'),
-              ),
-            ],
+                  },
+                  child: Text('Previous'),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: _currentStep == getSteps(context).length - 1 ?Colors.green : Colors.black,
+                      foregroundColor: Colors.white),
+                  onPressed: () {
+                    if (_currentStep == getSteps(context).length - 1) {
+                      // Last step: Save the form data
+                      saveDataAndShowDialog();
+                    } else {
+                      // Validate the current step
+                      bool isValid = validate();
+                      if (isValid) {
+                        setState(() {
+                          _currentStep++; // Move to the next step only if validation passes
+                        });
+                      }
+                    }
+                  },
+                  child: Text(_currentStep == getSteps(context).length - 1
+                      ? 'Save'
+                      : 'Continue'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -354,36 +623,34 @@ void validate() {
       /// Step 1: Patient Information
       Step(
         stepStyle: StepStyle(connectorColor: Colors.black),
-        state: _currentStep>0 ? StepState.complete : StepState.indexed,
+        state: _currentStep > 0 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 0,
-        title: Text('1'),
+        title: Text(''),
+        
+        
         content: Column(
-          
           children: [
             TextField(
               controller: nameController,
-              decoration: InputDecoration(labelText: "Name",
-              border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: "Name",
+                border: OutlineInputBorder(),
               ),
-              
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: ageController,
-              decoration: InputDecoration(labelText: "Age",
-              border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Age",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             DropdownButtonFormField<String>(
               value: genderController.text.isNotEmpty
                   ? genderController.text
                   : null,
-              items: ['Male', 'Female', 'Transgender']
-                  .map((String value) {
+              items: ['Male', 'Female', 'Transgender'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -394,190 +661,239 @@ void validate() {
                   genderController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Gender",
-              border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Gender",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: dateOfBirthController,
-              decoration: InputDecoration(labelText: "Date of Birth",
-              border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Date of Birth",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: "Email",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: mobileController,
-              decoration: InputDecoration(labelText: "Mobile",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Mobile",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: emergencyContactController,
-              decoration: InputDecoration(labelText: "Emergency Contact",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Emergency Contact",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: dateOfExaminationController,
-              decoration: InputDecoration(labelText: "Date of Examination",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Date of Examination",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: referingPhysicianController,
-              decoration: InputDecoration(labelText: "Referring Physician",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Referring Physician",
+                border: OutlineInputBorder(),
+              ),
             ),
-
-            SizedBox(height:10),
-
+            SizedBox(height: 10),
             TextField(
               controller: medicalRecordNumberController,
-              decoration: InputDecoration(labelText: "Medical Record Number",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Medical Record Number",
+                border: OutlineInputBorder(),
+              ),
             ),
-
           ],
         ),
-        
       ),
 
       /// Step 2: Vital Signs
       Step(
-         state: _currentStep>1 ? StepState.complete : StepState.indexed,
-         isActive: _currentStep >= 1,
-        title: Text('2'),
+        state: _currentStep > 1 ? StepState.complete : StepState.indexed,
+        isActive: _currentStep >= 1,
+        title: Text(''),
         content: Column(
           children: [
-
-            Text("Blood Pressure"),
-
+            Text("Blood Pressure",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
             Row(
               children: [
                 Expanded(
-
                   child: TextField(
                     controller: systolicController,
-                    decoration: InputDecoration(labelText: "Systolic",border: OutlineInputBorder(),),
+                    decoration: InputDecoration(
+                      labelText: "Systolic",
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
-                
                 SizedBox(width: 10),
-
                 Expanded(
                   child: TextField(
                     controller: diastolicController,
-                    decoration: InputDecoration(labelText: "Diastolic",border: OutlineInputBorder(),),
+                    decoration: InputDecoration(
+                      labelText: "Diastolic",
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
               ],
             ),
-    SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: heartRateController,
-              decoration: InputDecoration(labelText: "Heart Rate",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Heart Rate",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: respiratoryRateController,
-              decoration: InputDecoration(labelText: "Respiratory Rate",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Respiratory Rate",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: temperatureController,
-              decoration: InputDecoration(labelText: "Temperature",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Temperature",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: spo2Controller,
-              decoration: InputDecoration(labelText: "SpO₂",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "SpO₂",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: heightController,
-              decoration: InputDecoration(labelText: "Height",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Height",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: weightController,
-              decoration: InputDecoration(labelText: "Weight",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Weight",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: symptomsController,
-              decoration: InputDecoration(labelText: "Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: prevTreatmentController,
-              decoration: InputDecoration(labelText: "Previous Treatment & Responses",
-              border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Previous Treatment & Responses",
+                border: OutlineInputBorder(),
+              ),
             ),
           ],
         ),
-        
       ),
 
       /// Step 3: Temporal Factors
       Step(
-        state: _currentStep>2?StepState.complete: StepState.indexed,
+        state: _currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 2,
-        title: Text('3'),
+        title: Text(''),
         content: Column(
           children: [
-
             TextField(
               controller: suddenOnsetController,
-              decoration: InputDecoration(labelText: "Sudden Onset",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Sudden Onset",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: gradualOnsetController,
-              decoration: InputDecoration(labelText: "Gradual Onset",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Gradual Onset",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: acuteSymptomsController,
-              decoration: InputDecoration(labelText: "Acute Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Acute Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: chronicSymptomsController,
-              decoration: InputDecoration(labelText: "Chronic Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Chronic Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: intermittentController,
-              decoration: InputDecoration(labelText: "Intermittent Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Intermittent Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: gradualProgressionController,
-              decoration: InputDecoration(labelText: "Gradual Progression",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Gradual Progression",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             TextField(
               controller: remittingController,
-              decoration: InputDecoration(labelText: "Remitting and Relapsing",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Remitting and Relapsing",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             DropdownButtonFormField<String>(
               value: frequencyOfSymptomsController.text.isNotEmpty
                   ? frequencyOfSymptomsController.text
                   : null,
-              items: ['Constant', 'Occasional', 'Cyclical']
-                  .map((String value) {
+              items: ['Constant', 'Occasional', 'Cyclical'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -588,15 +904,19 @@ SizedBox(height:10),
                   frequencyOfSymptomsController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Frequency of Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Frequency of Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
-            DropdownButtonFormField<String>( ///reason feild 1
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              ///reason feild 1
               value: timingOfSymptomsController.text.isNotEmpty
                   ? timingOfSymptomsController.text
                   : null,
-              items: ['Time of Day', 'Post-Activity', 'Other']
-                  .map((String value) {
+              items:
+                  ['Time of Day', 'Post-Activity', 'Other'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -607,9 +927,11 @@ SizedBox(height:10),
                   timingOfSymptomsController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Timing of Symptoms",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Timing of Symptoms",
+                border: OutlineInputBorder(),
+              ),
             ),
-
           ],
         ),
         //isActive: _currentStep >= 3,
@@ -617,16 +939,16 @@ SizedBox(height:10),
 
       /// Step 4: Present Medical History
       Step(
-        state: _currentStep>3 ?StepState.complete: StepState.indexed,
+        state: _currentStep > 3 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 3,
-        title: Text('4'),
+        title: Text(''),
         content: Column(
           children: [
-
-            DropdownButtonFormField<String>( ///reason feild 2
-              value: onsetController.text.isNotEmpty ? onsetController.text : null,
-              items: ['Gradual', 'Sudden']
-                  .map((String value) {
+            DropdownButtonFormField<String>(
+              ///reason feild 2
+              value:
+                  onsetController.text.isNotEmpty ? onsetController.text : null,
+              items: ['Gradual', 'Sudden'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -637,14 +959,18 @@ SizedBox(height:10),
                   onsetController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Onset",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Onset",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
-
-            DropdownButtonFormField<String>( ///reason feild 3
-              value: locationController.text.isNotEmpty ? locationController.text : null,
-              items: ['Localized', 'Radiates']
-                  .map((String value) {
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              ///reason feild 3
+              value: locationController.text.isNotEmpty
+                  ? locationController.text
+                  : null,
+              items: ['Localized', 'Radiates'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -655,15 +981,18 @@ SizedBox(height:10),
                   locationController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Location",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Location",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
-            DropdownButtonFormField<String>( ///reason feild 4
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              ///reason feild 4
               value: characteristicsController.text.isNotEmpty
                   ? characteristicsController.text
                   : null,
-              items: ['Sharp', 'Dull', 'Throbbing']
-                  .map((String value) {
+              items: ['Sharp', 'Dull', 'Throbbing'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -674,13 +1003,18 @@ SizedBox(height:10),
                   characteristicsController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Characteristics",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Characteristics",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
-            DropdownButtonFormField<String>( ///reason feild 5
-              value: durationController.text.isNotEmpty ? durationController.text : null,
-              items: ['Hours', 'Days', 'Weeks', 'Months']
-                  .map((String value) {
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              ///reason feild 5
+              value: durationController.text.isNotEmpty
+                  ? durationController.text
+                  : null,
+              items: ['Hours', 'Days', 'Weeks', 'Months'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -691,15 +1025,17 @@ SizedBox(height:10),
                   durationController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Duration",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Duration",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             DropdownButtonFormField<String>(
               value: aggravatingFactorsController.text.isNotEmpty
                   ? aggravatingFactorsController.text
                   : null,
-              items: ['Movement','Eating','Stress']
-                  .map((String value) {
+              items: ['Movement', 'Eating', 'Stress'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -710,15 +1046,18 @@ SizedBox(height:10),
                   aggravatingFactorsController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Aggravating Factors",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Aggravating Factors",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
-            DropdownButtonFormField<String>(  ///reason feild 6
+            SizedBox(height: 10),
+            DropdownButtonFormField<String>(
+              ///reason feild 6
               value: relievingFactorsController.text.isNotEmpty
                   ? relievingFactorsController.text
                   : null,
-              items: ['Rest', 'Medication', 'Heat/Cold'] 
-                  .map((String value) {
+              items: ['Rest', 'Medication', 'Heat/Cold'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -729,17 +1068,19 @@ SizedBox(height:10),
                   relievingFactorsController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Relieving Factors",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Relieving Factors",
+                border: OutlineInputBorder(),
+              ),
             ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Do any activities or treatments alleviate the symptoms?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-
             SizedBox(height: 16.0),
-
-            Row(///reason feild 7
+            Row(
+              ///reason feild 7
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -766,22 +1107,20 @@ SizedBox(height:10),
             ),
             if (_alleviateSymptoms == 'Yes')
               TextFormField(
-                controller: reason1_Controller,
+                controller: alleviateSymptomsController, // alleviateSymptomsController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
-
+            SizedBox(height: 10),
             Text(
               'Do any activities or treatments help relieve the symptoms?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-
             SizedBox(height: 16.0),
-
-            Row(///reason feild 8
+            Row(
+              ///reason feild 8
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -808,27 +1147,24 @@ SizedBox(height:10),
             ),
             if (_relieveSymptoms == 'Yes')
               TextFormField(
-                controller: reason2_Controller,
+                controller: relieveSymptomsController, //relieveSymptomsController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
-
-              Text(
+            SizedBox(height: 10),
+            Text(
               'Treatment',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-
             Text(
               'Have you sought any treatment for these symptoms?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            
             SizedBox(height: 16.0),
-
-            Row(///reason feild 9
+            Row(
+              ///reason feild 9
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -855,14 +1191,13 @@ SizedBox(height:10),
             ),
             if (_soughtTreatment == 'Yes')
               TextFormField(
-                controller: reason3_Controller,
+                controller: soughtTreatmentController, //soughtTreatmentController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
-
+            SizedBox(height: 10),
           ],
         ),
         //isActive: _currentStep >= 4,
@@ -870,14 +1205,14 @@ SizedBox(height:10),
 
       /// Step 5: Past Medical History
       Step(
-        state: _currentStep>4 ?StepState.complete: StepState.indexed,
+        state: _currentStep > 4 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 4,
-        title: Text('5'),
+        title: Text(''),
         content: Column(
           children: [
-            
-            DropdownButtonFormField<String>( ///reason feild 10
-              value: _selectedIllness,
+            DropdownButtonFormField<String>(
+              // Use _selectedIllness as the value for synchronization
+              value: _selectedIllness.isNotEmpty ? _selectedIllness : null,
               items: ['Hypertension', 'Diabetes', 'Asthma', 'Other']
                   .map((String value) {
                 return DropdownMenuItem<String>(
@@ -887,28 +1222,35 @@ SizedBox(height:10),
               }).toList(),
               onChanged: (String? newValue) {
                 setState(() {
-                  _selectedIllness = newValue!;
-                  _showOtherField = newValue == 'Other';
+                  _selectedIllness = newValue!; // Update the selected illness
+                  chronicIllnessController.text =
+                      newValue; // Sync with the controller
+                  _showOtherField = newValue ==
+                      'Other'; // Show "Specify illness" field if "Other" is selected
                 });
               },
-              decoration: InputDecoration(labelText: "Chronic Illness",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Chronic Illness",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             if (_showOtherField)
               TextFormField(
-                controller: specifyChronicIllnessController,
+                controller: chronicIllnessController,
                 decoration: InputDecoration(
                   labelText: 'Specify illness',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'past surgeries:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 11
+            Row(
+              ///reason feild 10(new)
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -935,19 +1277,20 @@ SizedBox(height:10),
             ),
             if (_pastSurgery == 'Yes')
               TextFormField(
-                controller: reason4_Controller,
+                controller: pastSurgeryController, //pastSurgeryController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-               SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Allergies:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height:10),
-            Text(///reason feild 12
+            SizedBox(height: 10),
+            Text(
+              ///reason feild 12
               'Medications:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -979,19 +1322,20 @@ SizedBox(height:10),
             ),
             if (_medication == 'Yes')
               TextFormField(
-                controller: reason4_Controller,
+                controller: medictationContoller, //medictationContoller
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Food',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 13
+            Row(
+              ///reason feild 13
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1018,19 +1362,20 @@ SizedBox(height:10),
             ),
             if (_foods == 'Yes')
               TextFormField(
-                controller: reason7_Controller,
+                controller: foodsController,//foodsController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Infectious diseases?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 14
+            Row(
+              ///reason feild 14
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1057,19 +1402,20 @@ SizedBox(height:10),
             ),
             if (_infectiousDiseases == 'Yes')
               TextFormField(
-                controller: reason8_Controller,
+                controller: infectiousDieseasesController, //infectiousDieseasesController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Mental disorders?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 15
+            Row(
+              ///reason feild 15
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1096,22 +1442,23 @@ SizedBox(height:10),
             ),
             if (_mentalDisorder == 'Yes')
               TextFormField(
-                controller: reason9_Controller,
+                controller: mentalDisorderController, //mentalDisorderController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Immunization history ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 16
+            Row(
+              ///reason feild 16
               children: [
                 Radio<String>(
-                  value: 'Yes',
+                  value: 'Up to date',
                   groupValue: _immunizationHistory,
                   onChanged: (value) {
                     setState(() {
@@ -1119,10 +1466,10 @@ SizedBox(height:10),
                     });
                   },
                 ),
-                Text('Yes'),
+                Text('Up to date'),
                 SizedBox(width: 32.0),
                 Radio<String>(
-                  value: 'No',
+                  value: 'Not up to date',
                   groupValue: _immunizationHistory,
                   onChanged: (value) {
                     setState(() {
@@ -1130,24 +1477,25 @@ SizedBox(height:10),
                     });
                   },
                 ),
-                Text('No'),
+                Text('Not up to date'),
               ],
             ),
-            if (_immunizationHistory == 'No')
+            if (_immunizationHistory == 'Not up to date')
               TextFormField(
-                controller: reason10_Controller,
+                controller: immunizationHistoryController, //immunizationHistoryController
                 decoration: InputDecoration(
-                  labelText: 'If no, please specify',
+                  labelText: 'If not, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Current Medicines',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 17
+            Row(
+              ///reason feild 17
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1174,19 +1522,20 @@ SizedBox(height:10),
             ),
             if (_currentMedicines == 'Yes')
               TextFormField(
-                controller: reason11_Controller,
+                controller: currentMedicineController, //currentMedicineController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'past medicines?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 18
+            Row(
+              ///reason feild 18
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1213,7 +1562,7 @@ SizedBox(height:10),
             ),
             if (_pastMedicines == 'Yes')
               TextFormField(
-                controller: reason12_Controller,
+                controller: pastMedicineController, //pastMedicineController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
@@ -1226,12 +1575,14 @@ SizedBox(height:10),
 
       /// Step 6: Family Medical History
       Step(
-        state: _currentStep>5 ?StepState.complete: StepState.indexed,
+        state: _currentStep > 5 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 5,
-        title: Text('6'),
+        title: Text(''),
         content: Column(
           children: [
-            DropdownButtonFormField<String>(///reason feild 19
+
+
+            DropdownButtonFormField<String>(
               value: _historyIllness,
               items: ['Heart Diseases', 'Cancer', 'Diabetes', 'Other']
                   .map((String value) {
@@ -1246,24 +1597,31 @@ SizedBox(height:10),
                   _showOtherField = newValue == 'Other';
                 });
               },
-              decoration: InputDecoration(labelText: "History of Illness",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "History of Illness",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             if (_showOtherField)
               TextFormField(
-                controller: specifyHistoryOfIllnessController,
+                controller: historyOfIllnessController,
                 decoration: InputDecoration(
                   labelText: 'Specify illness',
                   border: OutlineInputBorder(),
                 ),
               ),
-               SizedBox(height:10),
+
+
+
+            SizedBox(height: 10),
             Text(
               'Is there any hereditary condition in your family?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 20
+            Row(
+              ///reason feild 20
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1290,19 +1648,20 @@ SizedBox(height:10),
             ),
             if (_hereditary == 'Yes')
               TextFormField(
-                controller: reason13_Controller,
+                controller: heridatoryController, //heridatoryController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-               SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Do you have any mental health disorders in your family?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 21
+            Row(
+              ///reason feild 21
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1327,21 +1686,22 @@ SizedBox(height:10),
                 Text('No'),
               ],
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             if (_mentalHealth == 'Yes')
               TextFormField(
-                controller: reason13_Controller,
+                controller: mentalHealthController, //mentalHealthController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-             SizedBox(height:10),
+            SizedBox(height: 10),
 
-            DropdownButtonFormField<String>(///reason feild 22
+            
+            DropdownButtonFormField<String>(
+              ///reason feild 22
               value: _livingSituation,
-              items: ['With Family', 'Alone', 'Other']
-                  .map((String value) {
+              items: ['With Family', 'Alone', 'Other'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -1353,73 +1713,42 @@ SizedBox(height:10),
                   _showOtherField = newValue == 'Other';
                 });
               },
-              decoration: InputDecoration(labelText: "Living Situation",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Living Situation",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             if (_showOtherField)
               TextFormField(
-                controller: reason14_Controller,
+                controller: livingSituationController,
                 decoration: InputDecoration(
                   labelText: 'Specify living situation',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+
+
+            SizedBox(height: 10),
             TextField(
               controller: occupationController,
-              decoration: InputDecoration(labelText: "Occupation",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Occupation",
+                border: OutlineInputBorder(),
+              ),
             ),
-
           ],
         ),
         //isActive: _currentStep >= 6,
       ),
 
-/// Step -8-: Social History(thookun)
-      // Step(
-      //   state: _currentStep>7 ?StepState.complete: StepState.indexed,
-      //   title: Text('8'),
-      //   content: Column(
-      //     children: [
-      //       DropdownButtonFormField<String>(
-      //         value: _livingSituation,
-      //         items: ['With Family', 'Alone', 'Other']
-      //             .map((String value) {
-      //           return DropdownMenuItem<String>(
-      //             value: value,
-      //             child: Text(value),
-      //           );
-      //         }).toList(),
-      //         onChanged: (String? newValue) {
-      //           setState(() {
-      //             _livingSituation = newValue!;
-      //             _showOtherField = newValue == 'Other';
-      //           });
-      //         },
-      //         decoration: InputDecoration(labelText: "Living Situation"),
-      //       ),
-      //       if (_showOtherField)
-      //         TextFormField(
-      //           controller: reason14_Controller,
-      //           decoration: InputDecoration(
-      //             labelText: 'Specify living situation',
-      //             border: OutlineInputBorder(),
-      //           ),
-      //         ),
-      //       TextField(
-      //         controller: occupationController,
-      //         decoration: InputDecoration(labelText: "Occupation"),
-      //       ),
-      //     ],
-      //   ),
-      //   isActive: _currentStep >= 7,
-      // ),
-
+     
       /// Step 7: Lifestyle Factors
       Step(
-        state: _currentStep>6 ?StepState.complete: StepState.indexed,
+        state: _currentStep > 6 ? StepState.complete : StepState.indexed,
         isActive: _currentStep >= 6,
-        title: Text('7'),
+        title: Text(''),
+
         content: Column(
           children: [
             Text(
@@ -1427,7 +1756,8 @@ SizedBox(height:10),
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 23
+            Row(
+              ///reason feild 23
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1454,19 +1784,20 @@ SizedBox(height:10),
             ),
             if (_tobacco == 'Yes')
               TextFormField(
-                controller: reason15_Controller,
+                controller: tobacoController,//tobacoController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Alcohol Consumption',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 24
+            Row(
+              ///reason feild 24
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1493,19 +1824,20 @@ SizedBox(height:10),
             ),
             if (_alcohol == 'Yes')
               TextFormField(
-                controller: reason16_Controller,
+                controller: alcoholController, //alcoholController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Recreational Drug Use',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 25
+            Row(
+              ///reason feild 25
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1532,17 +1864,18 @@ SizedBox(height:10),
             ),
             if (_drug == 'Yes')
               TextFormField(
-                controller: reason17_Controller,
+                controller: drugController, //drugController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height:10),
+            SizedBox(height: 10),
             DropdownButtonFormField<String>(
-              value: _exerciseFrequency,
-              items: ['Regularly', 'Occasionally', 'Never']
-                  .map((String value) {
+              value: exerciseController.text.isNotEmpty
+                  ? exerciseController.text
+                  : null,
+              items: ['Regularly', 'Occasionally', 'Never'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -1550,12 +1883,15 @@ SizedBox(height:10),
               }).toList(),
               onChanged: (String? newValue) {
                 setState(() {
-                  _exerciseFrequency = newValue!;
+                  exerciseController.text = newValue!;
                 });
               },
-              decoration: InputDecoration(labelText: "Exercise Frequency",border: OutlineInputBorder(),),
+              decoration: InputDecoration(
+                labelText: "Exercise Frequency",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Dietary Habits',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -1586,13 +1922,14 @@ SizedBox(height:10),
                 Text('Unbalanced'),
               ],
             ),
-SizedBox(height:10),
-             Text(
+            SizedBox(height: 10),
+            Text(
               'Exposure to Pollutants',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 26
+            Row(
+              ///reason feild 26
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1619,19 +1956,20 @@ SizedBox(height:10),
             ),
             if (_pollutants == 'Yes')
               TextFormField(
-                controller: reason18_Controller,
+                controller: pollutantsController,//pollutantsController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-SizedBox(height:10),
+            SizedBox(height: 10),
             Text(
               'Exposure to Toxins',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16.0),
-            Row(///reason feild 27
+            Row(
+              ///reason feild 27
               children: [
                 Radio<String>(
                   value: 'Yes',
@@ -1658,21 +1996,16 @@ SizedBox(height:10),
             ),
             if (_toxins == 'Yes')
               TextFormField(
-                controller: reason18_Controller,
+                controller: toxinsController, //toxinsController
                 decoration: InputDecoration(
                   labelText: 'If yes, please specify',
                   border: OutlineInputBorder(),
                 ),
               ),
-
           ],
         ),
         //isActive: _currentStep >= 8,
       ),
-
-
-    
-
     ];
   }
 }
